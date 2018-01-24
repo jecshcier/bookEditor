@@ -4,7 +4,9 @@
   "description": "a ebook editor",
   "main": "index.js",
   "scripts": {
-    "start:dev": "webpack-dev-server"
+    "start:dev": "webpack-dev-server",
+    "start:product": "webpack --progress --colors --config webpack.product.js",
+    "start:init":"webpack --progress --colors"
   },
   "keywords": [
     "ebook"
@@ -27,6 +29,7 @@
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.9",
     "extract-text-webpack-plugin": "^3.0.2",
+    "html-webpack-plugin": "^2.30.1",
     "postcss-loader": "^2.0.10",
     "style-loader": "^0.19.1",
     "uglifyjs-webpack-plugin": "^1.1.6",

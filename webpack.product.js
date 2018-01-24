@@ -1,6 +1,10 @@
+//生产环境配置
 const path = require('path')
+const ExtractTextPlugin = require("extract-text-webpack-plugin")
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack')
+
 
 
 const config = {
@@ -22,24 +26,15 @@ const config = {
           presets: ['react']
         }
       }
-    }, {
-      test: /\.css$/,
-      exclude: /node_modules/,
-      use: [
-        {
-          loader: 'style-loader',
-        },
-        {
-          loader: 'css-loader',
-          options: {
-            importLoaders: 1,
-          }
-        },
-        {
-          loader: 'postcss-loader'
-        }
-      ]
-    }
+    },
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: ['css-loader', 'postcss-loader']
+        })
+      }
     
     ]
   },
@@ -52,6 +47,12 @@ const config = {
     new webpack.optimize.CommonsChunkPlugin({
       name: "vendor",
       filename: "js/lib/vender.bundle.js"
+    }),
+    
+    new ExtractTextPlugin("css/style.css"),
+    new UglifyJsPlugin({
+      test: /\.js($|\?)/i,
+      exclude: /(node_modules|bower_components)/
     }),
     new HtmlWebpackPlugin({
       title: '数字教材编辑器V1.0',
