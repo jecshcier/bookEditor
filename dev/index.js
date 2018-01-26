@@ -12,10 +12,13 @@ class List extends React.Component {
   }
   
   render() {
-    return (<ul className="list">
-      <li onClick={this.bookConfig}>书本配置</li>
-      <li onClick={this.menuConfig}>书本目录</li>
-    </ul>);
+    return (<div>
+      <div className="title">数字教材编辑器V1.0</div>
+      <ul className="list">
+        <li onClick={this.bookConfig}>书本配置</li>
+        <li onClick={this.menuConfig}>书本目录</li>
+      </ul>
+    </div>);
   }
   
   bookConfig(e) {
@@ -34,14 +37,30 @@ class BookConfigView extends React.Component {
   
   render() {
     return (<div>
-      <label>书本名称</label>
-      <input type="text"/>
-      <label>作者</label>
-      <input type="text"/>
-      <label>出版社</label>
-      <input type="text"/>
-      <label>isbn</label>
-      <input type="text"/>
+      <div className="title-bar"></div>
+      <div className="content">
+        <div className="book-setting">
+          <div className="setting-table">
+            <div>
+              <div>书本名称</div>
+              <div><input type="text"/></div>
+            </div>
+            <div>
+              <div>isbn</div>
+              <div><input type="text"/></div>
+            </div>
+            <div>
+              <div>作者</div>
+              <div><input type="text"/></div>
+            </div>
+            <div>
+              <div>出版社</div>
+              <div><input type="text"/></div>
+            </div>
+          </div>
+          <button>提交</button>
+        </div>
+      </div>
     </div>);
   }
 }
@@ -52,7 +71,10 @@ class MenuConfigView extends React.Component {
   }
   
   render() {
-    return (<div></div>);
+    return (<div>
+      <div className="title-bar"></div>
+      <div className="content"></div>
+    </div>);
   }
 }
 
@@ -77,7 +99,7 @@ class Main extends React.Component {
   
   render() {
     console.log(this.view)
-    return <div>
+    return <div className="editor">
       <List update={this.update}/>
       {this.view}
     </div>
@@ -87,6 +109,6 @@ class Main extends React.Component {
 
 
 ReactDOM.render(
-  <Main />,
+  <Main/>,
   document.getElementById('main')
 )

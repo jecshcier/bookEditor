@@ -10,12 +10,12 @@
 
 ## 初始化
 
-`npm start:init`
+`npm run start:init`
 
 ## 开发模式
 
-`npm start:dev`
+`npm run start:dev`
 
 ## 打包
 
-`npm start:product`
+`npm run start:product`
