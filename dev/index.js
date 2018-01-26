@@ -87,6 +87,6 @@ class Main extends React.Component {
 
 
 ReactDOM.render(
-  <Main/>,
+  <Main />,
   document.getElementById('main')
 )
