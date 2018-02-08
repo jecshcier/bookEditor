@@ -10,7 +10,7 @@ const webpack = require('webpack')
 const config = {
   entry: {
     main: './dev/index.js',
-    vendor: ['react', 'react-dom']
+    vendor: ['react', 'react-dom','antd']
   },
   output: {
     filename: 'js/[name].js',
@@ -29,7 +29,7 @@ const config = {
     },
       {
         test: /\.css$/,
-        exclude: /node_modules/,
+        // exclude: /node_modules/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
           use: ['css-loader', 'postcss-loader']

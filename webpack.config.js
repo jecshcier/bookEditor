@@ -2,11 +2,10 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack')
 
-
 const config = {
   entry: {
     main: './dev/index.js',
-    vendor: ['react', 'react-dom']
+    vendor: ['react', 'react-dom', 'antd']
   },
   output: {
     filename: 'js/[name].js',
@@ -20,11 +19,12 @@ const config = {
         loader: 'babel-loader',
         options: {
           presets: ['react']
-        }
+        },
       }
     }, {
       test: /\.css$/,
-      exclude: /node_modules/,
+      // exclude: /node_modules/,
+      // include: path.resolve(__dirname, 'node_modules/antd/'),
       use: [
         {
           loader: 'style-loader',
@@ -56,7 +56,7 @@ const config = {
     new HtmlWebpackPlugin({
       title: '数字教材编辑器V1.0',
       filename: 'index.html',
-      template: path.join(__dirname,'dev/templates/index.html')
+      template: path.join(__dirname, 'dev/templates/index.html')
     })
   ]
 };
