@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {Tree, Button, Radio, Icon, Modal,Input} from 'antd';
+import {Tree, Button, Radio, Icon, Modal, Input} from 'antd';
 import 'antd/dist/antd.css'
 
 const TreeNode = Tree.TreeNode;
@@ -133,6 +133,7 @@ class MenuEdit extends React.Component {
     super(props);
     this.onSelect = this.onSelect.bind(this)
     this.add = this.add.bind(this)
+    this.edit = this.edit.bind(this)
     this.modalOK = this.modalOK.bind(this)
     this.modalCancel = this.modalCancel.bind(this)
     this.modalDom = null
@@ -195,19 +196,30 @@ class MenuEdit extends React.Component {
     switch (this.addType) {
       case 0:
         console.log("新增章")
-        this.modalDom = <Input placeholder="章名称" />
+        this.modalDom = <Input placeholder="章名称"/>
         break
       case 1:
         console.log("新增节")
-        this.modalDom = <Input placeholder="节名称" />
+        this.modalDom = <Input placeholder="节名称"/>
         break
       case 2:
         console.log("新增课")
-        this.modalDom = <Input placeholder="课名称" />
+        this.modalDom = <Input placeholder="课名称"/>
         break
       default:
         break
     }
+    this.setState({showModal: true})
+  }
+  
+  edit(){
+    console.log()
+    if(this.addType === 0)
+    {
+      console.log('不可操作')
+      return;
+    }
+    this.modalDom = <Input placeholder="新名称"/>
     this.setState({showModal: true})
   }
   
@@ -256,9 +268,12 @@ class MenuEdit extends React.Component {
         <div key={"button"}>
           <Button
             rel={addType}
-            type={this.state.selNode.length < 5 ? "primary" : "dashed"} onClick={this.add}>{str}
+            type={addType === null ? "dashed" : "primary"} onClick={this.add}>{str}
           </Button>
-          <Button type={"dashed"}>删除</Button>
+          <Button
+            type={addType === 0 ? "dashed" : "primary"} onClick={this.edit}>修改名称
+          </Button>
+          <Button type={addType === 0 ? "dashed" : "danger"}>删除</Button>
         </div>,
         <Modal
           title="提示"

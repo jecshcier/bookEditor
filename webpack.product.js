@@ -23,7 +23,7 @@ const config = {
       use: {
         loader: 'babel-loader',
         options: {
-          presets: ['react']
+          presets: ['react','env']
         }
       }
     },
@@ -48,7 +48,6 @@ const config = {
       name: "vendor",
       filename: "js/lib/vender.bundle.js"
     }),
-    
     new ExtractTextPlugin("css/style.css"),
     new UglifyJsPlugin({
       test: /\.js($|\?)/i,
